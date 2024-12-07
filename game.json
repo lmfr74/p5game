@@ -1,0 +1,39 @@
+{
+  "name": "ORBIS",
+  "version": "1.0",
+  "description": "A game where you fight Orbis and try to survive as long as possible.",
+  "maxMines": 4,
+  "mineValues": [1, 2, 4],
+  "mineMinSize": 20,
+  "mineMissileMaxSpeed": 10,
+  "mineMissileMaxAge": 30,
+  "maxPlayerMissiles": 10,
+  "playerMissileMinSpeed": 10,
+  "playerMissileMaxAge": 60,
+  "pauseKey": "p",
+  "debug": false,
+  "sprites": [
+    "assets/F5S1.png",
+    "assets/F5S2.png",
+    "assets/F5S3.png",
+    "assets/F5S4.png"
+  ],
+  "backgrounds": [
+    "assets/ORBIS.png",
+    "assets/space-5720414_1920.jpg",
+    "assets/universe-8076233.jpg",
+    "assets/space-7577028_1920.jpg",
+    "assets/wallpaper-5045169_1920.jpg",
+    "assets/pismis-24-11186_1920.jpg"
+  ],
+  "sounds": [
+    "assets/spaceship-ambient-sfx-164114.mp3",
+    "assets/game-over-arcade-6435.mp3",
+    "assets/laser-zap-90575.mp3",
+    "assets/fire-88783.mp3",
+    "assets/grenade-explosion-14-190266.mp3",
+    "assets/sci-fi-elements-impact-hit-large-tight-01-230521.mp3",
+    "assets/achievement-video-game-type-1-230515.mp3",
+    "assets/glitch-01-231255.mp3"
+  ]
+}

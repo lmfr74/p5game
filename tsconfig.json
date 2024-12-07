@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Set the target to ES6
+    "module": "es6", // Use ES6 module system
+    "strict": true, // Enable strict type-checking options
+    "esModuleInterop": true, // Enable compatibility with CommonJS modules
+    "skipLibCheck": true, // Skip type checking of all declaration files
+    "forceConsistentCasingInFileNames": true, // Ensure consistent casing in file names
+    "moduleResolution": "node", // Use Node.js module resolution strategy
+    "rootDir": "./src", // Root directory of source files
+    "types": ["p5"] // Include the p5 type definitions
+  },
+  "include": ["src/**/*"] // Include all TypeScript files in the src directory
+}

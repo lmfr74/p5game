@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ORBIS Game</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+  </head>
+  <body>
+    <div id="game-start">
+      Level <span class="game-level"></span>
+      <h3>Press any key to start</h3>
+    </div>
+    <div class="game-info">
+      <h3><span id="game-title"></span> <span id="game-paused"></span> Level <span class="game-level"></span> | Score:<span class="game-score">0</span> | Health:<span id="game-health">0</span></h3>
+      <small id="game-description"></small>
+    </div>
+    <div id="game-over">
+      <h2>GAME OVER!</h1>
+      </span> Level <span class="game-level"></span>
+      <p>Your score: <span class="game-score">100</span></p>
+      <button id="game-restart">Restart</button>
+    </div>
+    <div id="game-achievement">
+      <h2>GREAT JOB!</h1>
+      <p>Your score: <span class="game-score">100</span></p>
+      <button id="game-restart">Next level</button>
+    </div>
+    <script src="dist/bundle.js"></script>
+    <script>
+      document.getElementById('game-restart').addEventListener('click', function() {
+        location.reload();
+      });
+      document.getElementById('game-achievement').addEventListener('click', function() {
+        const url = new URL(window.location.href);
+        const level = parseInt(url.searchParams.get('level')) || 1;
+        url.searchParams.set('level', level + 1);
+        window.location.href = url.toString();        
+        location.location.href = url.toString();
+      });
+    </script>
+  </body>
+</html>

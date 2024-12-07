@@ -1,0 +1,60 @@
+html {
+  font-family: Roboto, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+canvas {
+  display: block;
+  background-color: black;
+}
+
+.game-info {
+  position: fixed;
+  margin-left: 8px;
+  color: sienna;
+  user-select: none;
+  pointer-events: none;
+}
+#game-title {
+  margin: 8px 0;
+}
+#game-description {
+  margin: 0;
+}
+#game-start,
+#game-over,
+#game-achievement {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 32px;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  font-size: 32px;
+  color: white;
+  border-radius: 10%;
+  font-weight: bold;
+  text-align: center;
+  user-select: none;
+}
+#game-start {
+  display: block;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0;
+}
+#game-score {
+  margin: 16px 0;
+  text-decoration: underline;
+}
+#game-achievement {
+  background-color: green;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+}

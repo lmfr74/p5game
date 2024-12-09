@@ -108,16 +108,17 @@ export default class Game {
     };
 
     p5.mouseClicked = () => {
-      if (this.paused) return;
-      this.firePlayerMissile();
+      if (!this.started) this.startGame();
+      else if (this.paused) return;
+      else this.firePlayerMissile();
     };
 
     p5.keyPressed = () => {
-      if (!this.started) this.startGame();
-      else if (this.p5.key === this.settings.pauseKey) this.pauseGame();
-
-      this.stage.drawStatus();
-      this.sound.playAmbient(this.paused);
+      if (this.p5.key === this.settings.pauseKey) {
+        this.pauseGame();
+        this.stage.drawStatus();
+        this.sound.playAmbient(this.paused);
+      }
     };
   }
 
@@ -227,10 +228,12 @@ export default class Game {
     this.components.push(explosion);
   }
 
-  private startGame() {
+  startGame() {
     this.started = true;
     this.paused = false;
     this.stage.drawReady();
+    this.stage.drawStatus();
+    this.sound.playAmbient(false);
   }
 
   private pauseGame() {

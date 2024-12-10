@@ -48,6 +48,7 @@ export default class Stage extends Component {
 
     // Create a full screen canvas
     this.p5.createCanvas(this.p5.windowWidth, this.p5.windowHeight);
+    this.p5.pixelDensity(1);
     this.p5.mouseX = this.p5.width / 2;
     this.p5.mouseY = this.p5.height / 2;
 

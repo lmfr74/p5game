@@ -207,15 +207,17 @@ export default class Game {
   }
 
   private renderDebug() {
+    this.p5.push();
+    this.p5.fill(255);
+    this.p5.text("FPS: " + this.p5.frameRate().toFixed(2), 8, 24);
+    this.p5.noFill();
     this.components.forEach((c) => {
       const box = c.boundingBox();
       const [tl, br] = box;
-      this.p5.push();
-      this.p5.noFill();
       this.p5.stroke(0, 0, 255, 128);
       this.p5.rect(tl.x, tl.y, br.x - tl.x, br.y - tl.y);
-      this.p5.pop();
     });
+    this.p5.pop();
   }
 
   private explode(component: Component) {

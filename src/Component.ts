@@ -9,6 +9,7 @@ export default class Component {
   sprite?: p5.Image;
   value: number = 0;
   energy: number = 0;
+  shield: number = 0;
 
   protected constructor(game: Game) {
     this.game = game;

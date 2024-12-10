@@ -21,6 +21,7 @@ interface ISettings {
   maxPlayerMissiles: number;
   playerMissileMinSpeed: number;
   playerMissileMaxAge: number;
+  playerShieldMaxAge: number;
   pauseKey: string;
   debug: boolean;
   sprites: string[];
@@ -189,8 +190,8 @@ export default class Game {
     const isMineMineCollision = a instanceof Mine && b instanceof Mine;
     const volume = isMineMineCollision ? this.MineFactory.getVolume(a, b) : 1;
     this.sound.playHit(volume);
-    a.hit();
-    b.hit();
+    if (!a.shield) a.hit();
+    if (!b.shield) b.hit();
     this.stage.drawStatus();
   }
 

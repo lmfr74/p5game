@@ -18,6 +18,7 @@ export default class Player extends Component {
   private angle: number = 0;
   private alert: number = 0;
   private damage: number = 0;
+  private maxShield: number = 0;
 
   constructor(game: Game) {
     super(game);
@@ -33,6 +34,7 @@ export default class Player extends Component {
     // Set the player position to the center of the screen
     this.position = this.p5.createVector(this.p5.width / 2, this.p5.height / 2);
     this.value = this.energy = this.MAX_ENERGY;
+    this.shield = this.maxShield = this.game.settings.playerShieldMaxAge;
     if (this.sprite) {
       this.sprite.resize(64, 0);
       this.dx = this.sprite.width / 2;
@@ -78,6 +80,9 @@ export default class Player extends Component {
       // Reset alert
       this.alert = 0;
     }
+
+    // Update shield
+    if (this.shield > 0) this.shield--;
   }
 
   render() {
@@ -96,14 +101,28 @@ export default class Player extends Component {
       // Draw alert
       if (this.damage) {
         const alpha = (255 - (255 * this.energy) / this.value) * this.alert;
-        const r = 128 * this.alert;
-
+        const r = 1.3 * this.sprite.height * this.alert;
         this.p5.stroke(255, 0, 0, 200);
         this.p5.strokeWeight(this.energy - 1);
         this.p5.fill(255, 0, 0, alpha);
         this.p5.arc(0, 0, r, r, 0, this.p5.TWO_PI);
       }
+      // Draw shield
+      if (this.shield) {
+        const alpha = this.p5.map(this.shield, this.maxShield, 0, 160, 32);
+        const r = 1.3 * this.sprite.height + this.alert;
+        this.p5.fill(0, 0, 255, alpha);
+        this.p5.arc(0, 0, r, r, 0, this.p5.TWO_PI);
+      }
+      // Draw player sprite
       this.p5.image(this.sprite, -this.dx, -this.dy);
+      // Draw shield text (topmost)
+      if (this.shield) {
+        const seconds = Math.floor(this.shield / this.p5.frameRate()) + 1;
+        this.p5.textAlign(this.p5.CENTER, this.p5.CENTER);
+        this.p5.fill("white");
+        this.p5.text(seconds, 0, 0);
+      }
       this.p5.pop();
     }
   }

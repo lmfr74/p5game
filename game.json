@@ -1,7 +1,7 @@
 {
   "name": "ORBIS",
   "version": "1.0",
-  "description": "A game where you fight Orbis and try to survive as long as possible.",
+  "description": "Battle against Orbis ⚪ and survive as long as possible .",
   "levelMines": [3, 5, 7, 11, 13, 17, 19, 23, 29, 31],
   "mineValues": [1, 2, 4],
   "mineMinSize": 20,

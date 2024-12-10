@@ -15,10 +15,12 @@ canvas {
 
 .game-info {
   position: fixed;
-  margin-left: 8px;
+  padding: 8px;
   color: sienna;
   user-select: none;
   pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.6);
 }
 #game-title {
   margin: 8px 0;

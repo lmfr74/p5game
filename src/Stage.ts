@@ -111,6 +111,11 @@ export default class Stage extends Component {
     if (startElement) {
       startElement.style.display = "none";
     }
+
+    let descriptionElement = document.getElementById("game-description");
+    if (descriptionElement) {
+      descriptionElement.style.display = "none";
+    }
   }
 
   drawStatus() {

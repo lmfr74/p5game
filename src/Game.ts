@@ -13,7 +13,7 @@ interface ISettings {
   name: string;
   description: string;
   version: string;
-  maxMines: number;
+  levelMines: number[];
   mineValues: number[];
   mineMinSize: number;
   mineMissileMaxSpeed: number;
@@ -54,13 +54,14 @@ export default class Game {
 
     p5.preload = () => {
       // all async operations should be done here
-      let params: IParams = this.p5.getURLParams() as IParams;
-      this.level = +params.level || 1;
-
       this.p5.loadJSON(
         "game.json",
         (settings: ISettings) => {
           this.settings = settings;
+
+          const maxLevel = this.settings.levelMines.length;
+          const params: IParams = this.p5.getURLParams() as IParams;
+          this.level = Math.min(+params.level || 1, maxLevel);
 
           this.stage = new Stage(this);
           this.stage.preload();

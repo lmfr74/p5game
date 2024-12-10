@@ -19,7 +19,7 @@ export default class MineFactory {
 
   setup() {
     // Create the mines based on the current level with random value.
-    const maxMines = this.game.settings.maxMines * this.game.level;
+    const maxMines = this.game.settings.levelMines[this.game.level - 1];
     for (let i = 0; i < maxMines; i++) {
       const value = this.game.p5.random(this.game.settings.mineValues);
       const mine = new Mine(this.game, value);

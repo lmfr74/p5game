@@ -190,8 +190,10 @@ export default class Game {
     const isMineMineCollision = a instanceof Mine && b instanceof Mine;
     const volume = isMineMineCollision ? this.MineFactory.getVolume(a, b) : 1;
     this.sound.playHit(volume);
-    if (!a.shield) a.hit();
-    if (!b.shield) b.hit();
+    if (!a.shield && !b.shield) {
+      a.hit();
+      b.hit();
+    }
     this.stage.drawStatus();
   }
 

@@ -270,9 +270,7 @@ export default class Game {
   fireMineMissile(mine: Mine) {
     this.sound.playMineFireMissile();
     const missile = new MineMissile(this);
-    const direction = mine.position
-      .copy()
-      .sub(this.player.position)
+    const direction = p5.Vector.sub(mine.position, this.player.position)
       .normalize()
       .mult(-1);
     missile.setup(undefined, mine.position, direction);

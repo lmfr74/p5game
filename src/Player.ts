@@ -46,7 +46,7 @@ export default class Player extends Component {
     // Move and turn into the mouse position (target)
     const target = this.p5.createVector(this.p5.mouseX, this.p5.mouseY);
     // Calculate the next position using lerp
-    const nextPosition = this.position.copy().lerp(target, this.MOVE_SPEED);
+    const nextPosition = p5.Vector.lerp(this.position, target, this.MOVE_SPEED);
     // Calculate the velocity vector from the current position to the next position
     this.velocity = p5.Vector.sub(nextPosition, this.position);
     // Update the position

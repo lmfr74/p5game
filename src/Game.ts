@@ -181,7 +181,7 @@ export default class Game {
 
         if (a === b || ignoreCollision) return;
 
-        if (a.intercepts(b)) this.onHit(a, b);
+        if (a.intercepts(b) && !a.shield && !b.shield) this.onHit(a, b);
       });
     });
   }
@@ -190,10 +190,8 @@ export default class Game {
     const isMineMineCollision = a instanceof Mine && b instanceof Mine;
     const volume = isMineMineCollision ? this.MineFactory.getVolume(a, b) : 1;
     this.sound.playHit(volume);
-    if (!a.shield && !b.shield) {
-      a.hit();
-      b.hit();
-    }
+    a.hit();
+    b.hit();
     this.stage.drawStatus();
   }
 

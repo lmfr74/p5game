@@ -21,7 +21,7 @@ interface ISettings {
   maxPlayerMissiles: number;
   playerMissileMinSpeed: number;
   playerMissileMaxAge: number;
-  playerShieldMaxAge: number;
+  playerShieldMaxAge: number[];
   pauseKey: string;
   debug: boolean;
   sprites: string[];

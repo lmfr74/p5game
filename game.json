@@ -10,7 +10,7 @@
   "maxPlayerMissiles": 10,
   "playerMissileMinSpeed": 10,
   "playerMissileMaxAge": 60,
-  "playerShieldMaxAge": 300,
+  "playerShieldMaxAge": [180, 180, 180, 300, 300, 300, 420, 420, 420, 600],
   "pauseKey": "p",
   "debug": false,
   "sprites": [

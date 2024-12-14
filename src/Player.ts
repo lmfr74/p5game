@@ -34,7 +34,8 @@ export default class Player extends Component {
     // Set the player position to the center of the screen
     this.position = this.p5.createVector(this.p5.width / 2, this.p5.height / 2);
     this.value = this.energy = this.MAX_ENERGY;
-    this.shield = this.maxShield = this.game.settings.playerShieldMaxAge;
+    this.shield = this.maxShield =
+      this.game.settings.playerShieldMaxAge[this.game.level - 1];
     if (this.sprite) {
       this.sprite.resize(64, 0);
       this.dx = this.sprite.width / 2;

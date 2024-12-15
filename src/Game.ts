@@ -13,17 +13,17 @@ interface ISettings {
   name: string;
   description: string;
   version: string;
-  levelMines: number[];
-  mineValues: number[];
-  mineMinSize: number;
-  mineMissileMaxSpeed: number;
-  mineMissileMaxAge: number;
-  maxPlayerMissiles: number;
-  playerMissileMinSpeed: number;
-  playerMissileMaxAge: number;
-  playerShieldMaxAge: number[];
   pauseKey: string;
   debug: boolean;
+  mineMinSize: number;
+  mineValues: number[];
+  levelMines: number[];
+  mineMissileSpeed: number[];
+  mineMissileMaxAge: number[];
+  playerMissileSpeed: number[];
+  playerMaxMissiles: number[];
+  playerMissileMaxAge: number[];
+  playerShieldMaxAge: number[];
   sprites: string[];
   backgrounds: string[];
   sounds: string[];
@@ -258,7 +258,8 @@ export default class Game {
 
   private firePlayerMissile() {
     // limit the number of missiles
-    if (this.missileCount >= this.settings.maxPlayerMissiles) return;
+    const maxMissiles = this.settings.playerMaxMissiles[this.level - 1];
+    if (this.missileCount >= maxMissiles) return;
 
     this.sound.playPlayerFireMissile();
     this.missileCount++;

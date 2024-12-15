@@ -7,22 +7,22 @@ export default class Missile extends Component {
   private readonly MAX_ENERGY: number = 1;
 
   private color: p5.Color;
-  private minSpeed: number;
+  private speed: number;
   private maxAge: number;
 
   private age: number = 0;
 
-  constructor(game: Game, color: p5.Color, minSpeed: number, maxAge: number) {
+  constructor(game: Game, color: p5.Color, speed: number, maxAge: number) {
     super(game);
     this.color = color;
-    this.minSpeed = minSpeed;
+    this.speed = speed;
     this.maxAge = maxAge;
   }
 
   setup(sprite?: p5.Image, position?: p5.Vector, velocity?: p5.Vector) {
     super.setup(sprite, position, velocity);
-    if (this.velocity.mag() < this.minSpeed) {
-      this.velocity.setMag(this.minSpeed);
+    if (this.velocity.mag() < this.speed) {
+      this.velocity.setMag(this.speed);
     }
     this.value = this.energy = this.MAX_ENERGY;
   }

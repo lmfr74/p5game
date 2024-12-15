@@ -8,8 +8,8 @@ export default class PlayerMissile extends Missile {
     super(
       game,
       color,
-      game.settings.playerMissileMinSpeed,
-      game.settings.playerMissileMaxAge
+      game.settings.playerMissileSpeed[game.level - 1],
+      game.settings.playerMissileMaxAge[game.level - 1]
     );
   }
 }

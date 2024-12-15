@@ -8,8 +8,8 @@ export default class MineMissile extends Missile {
     super(
       game,
       color,
-      Math.min(game.level + 2, game.settings.mineMissileMaxSpeed),
-      game.settings.mineMissileMaxAge
+      game.settings.mineMissileSpeed[game.level - 1],
+      game.settings.mineMissileMaxAge[game.level - 1]
     );
   }
 }

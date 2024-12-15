@@ -16,6 +16,7 @@ export default class Sound {
   private explodeSound!: p5.MediaElement;
   private achievementSound!: p5.MediaElement;
   private alertSound!: p5.MediaElement;
+  private shieldSound!: p5.MediaElement;
 
   constructor(game: Game) {
     this.game = game;
@@ -36,6 +37,7 @@ export default class Sound {
     this.explodeSound = this.sounds[5];
     this.achievementSound = this.sounds[6];
     this.alertSound = this.sounds[7];
+    this.shieldSound = this.sounds[8];
   }
 
   stopAll() {
@@ -71,6 +73,10 @@ export default class Sound {
 
   playAlert() {
     this.alertSound.play().loop();
+  }
+
+  playShield() {
+    this.shieldSound.play();
   }
 
   playGameOver() {

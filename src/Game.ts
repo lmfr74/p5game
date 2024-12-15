@@ -124,31 +124,41 @@ export default class Game {
     };
   }
 
-  onAlert() {
+  onShieldOn(c: Component) {
+    console.log("Shield On.");
+    this.sound.playShield();
+  }
+
+  onShieldOff(c: Component) {
+    console.log("Shield Off.");
+  }
+
+  onAlert(c: Component) {
+    console.log("Damage alert!");
     this.sound.playAlert();
   }
 
-  onDead(component: Component) {
+  onDead(c: Component) {
     // Remove the component from the list
-    const p = this.components.indexOf(component);
+    const p = this.components.indexOf(c);
     if (p >= 0) this.components.splice(p, 1);
 
     // If the component is explosion, just return
-    if (component instanceof Explosion) return;
+    if (c instanceof Explosion) return;
 
     // If the component is a mine missile, just return
-    if (component instanceof MineMissile) return;
+    if (c instanceof MineMissile) return;
 
     // If the component is a missile, just decrease the count
-    if (component instanceof PlayerMissile) {
+    if (c instanceof PlayerMissile) {
       this.missileCount--;
       return;
     }
 
     // If the component is a mine, decrease the count and increase the score
-    if (component instanceof Mine) {
+    if (c instanceof Mine) {
       this.minesCount--;
-      this.score += component.value;
+      this.score += c.value;
       this.stage.drawStatus();
 
       // If there are no more mines, level up
@@ -159,13 +169,13 @@ export default class Game {
     }
 
     // If the component is the player, game over!
-    if (component instanceof Player) {
+    if (c instanceof Player) {
       this.gameOver();
       return;
     }
 
     // else, explode the component
-    this.explode(component);
+    this.explode(c);
   }
 
   private onCollision() {
@@ -221,13 +231,10 @@ export default class Game {
     this.p5.pop();
   }
 
-  private explode(component: Component) {
-    const volume =
-      this.missileCount > 0
-        ? 1
-        : this.MineFactory.getVolume(component, component);
+  private explode(c: Component) {
+    const volume = this.missileCount > 0 ? 1 : this.MineFactory.getVolume(c, c);
     this.sound.playExplode(volume);
-    const explosion = new Explosion(this, component.position, component.value);
+    const explosion = new Explosion(this, c.position, c.value);
     explosion.setup();
     this.components.push(explosion);
   }

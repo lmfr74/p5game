@@ -19,6 +19,8 @@ export default class Player extends Component {
   private alert: number = 0;
   private damage: number = 0;
   private maxShield: number = 0;
+  private shieldActivated: boolean = false;
+  private shieldDeactivated: boolean = false;
 
   constructor(game: Game) {
     super(game);
@@ -84,6 +86,10 @@ export default class Player extends Component {
 
     // Update shield
     if (this.shield > 0) this.shield--;
+    const shouldActivateShield = !this.shieldActivated;
+    const shouldDeactivateShield = !this.shieldDeactivated && this.shield === 0;
+    if (shouldActivateShield) this.activateShield();
+    else if (shouldDeactivateShield) this.deactivateShield();
   }
 
   render() {
@@ -131,7 +137,7 @@ export default class Player extends Component {
   hit() {
     // Reduce energy level, check alert, and game over
     this.energy--;
-    if (this.energy === 1) this.game.onAlert();
+    if (this.energy === 1) this.game.onAlert(this);
     else if (this.energy === 0) this.game.onDead(this);
   }
 
@@ -147,5 +153,15 @@ export default class Player extends Component {
         this.position.y + this.dy
       ),
     ];
+  }
+
+  private activateShield() {
+    this.shieldActivated = true;
+    this.game.onShieldOn(this);
+  }
+
+  private deactivateShield() {
+    this.shieldDeactivated = true;
+    this.game.onShieldOff(this);
   }
 }

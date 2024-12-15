@@ -42,10 +42,10 @@ export default class Component {
     return [this.position.copy(), this.position.copy()];
   }
 
-  intercepts(component: Component): boolean {
+  intercepts(c: Component): boolean {
     // override for collision detection
     const box1 = this.boundingBox();
-    const box2 = component.boundingBox();
+    const box2 = c.boundingBox();
 
     if (box1.length < 2 || box2.length < 2) {
       return false;

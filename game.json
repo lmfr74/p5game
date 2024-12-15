@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "Battle against Orbis ⚪ and survive as long as possible .",
   "pauseKey": "p",
-  "debug": true,
+  "debug": false,
   "sprites": [
     "assets/F5S1.png",
     "assets/F5S2.png",

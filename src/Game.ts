@@ -59,6 +59,8 @@ export default class Game {
       if (p5.windowWidth > 1400) jsonFile = "game.large.json";
       if (p5.windowWidth > 768) jsonFile = "game.medium.json";
 
+      console.log(`Loading game settings from '${jsonFile}'`);
+
       this.p5.loadJSON(
         jsonFile,
         (settings: ISettings) => {
@@ -80,7 +82,10 @@ export default class Game {
           this.MineFactory = new MineFactory(this);
           this.MineFactory.preload();
 
-          console.info(`Starting Game ${this.settings.name} powered by p5.js`);
+          console.info(
+            `Starting Game ${this.settings.name} level ${this.level} (powered by p5.js)`,
+            this.settings
+          );
         },
         (error) => {
           console.error("Failed to load game settings", error);

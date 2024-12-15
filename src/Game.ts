@@ -56,15 +56,14 @@ export default class Game {
     p5.preload = () => {
       // all async operations should be done here
       let jsonFile = "game.small.json";
-      if (p5.windowWidth > 1400) jsonFile = "game.large.json";
       if (p5.windowWidth > 768) jsonFile = "game.medium.json";
+      if (p5.windowWidth > 1400) jsonFile = "game.large.json";
 
-      console.log(`Loading game settings from '${jsonFile}'`);
+      this.p5.loadJSON("game.json", (gameJson: object) => {
+        this.p5.loadJSON(jsonFile, (sizeJson: object) => {
+          console.log(`Loading game settings from '${jsonFile}'`);
 
-      this.p5.loadJSON(
-        jsonFile,
-        (settings: ISettings) => {
-          this.settings = settings;
+          this.settings = { ...gameJson, ...sizeJson } as ISettings;
 
           const maxLevel = this.settings.levelMines.length;
           const params: IParams = this.p5.getURLParams() as IParams;
@@ -86,11 +85,8 @@ export default class Game {
             `Starting Game ${this.settings.name} level ${this.level} (powered by p5.js)`,
             this.settings
           );
-        },
-        (error) => {
-          console.error("Failed to load game settings", error);
-        }
-      );
+        });
+      });
     };
 
     p5.setup = () => {

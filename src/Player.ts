@@ -116,8 +116,8 @@ export default class Player extends Component {
       }
       // Draw shield
       if (this.shield) {
-        const alpha = this.p5.map(this.shield, this.maxShield, 0, 160, 32);
-        const r = 1.3 * this.sprite.height + this.alert;
+        const alpha = this.p5.map(this.shield, this.maxShield, 0, 160, 16);
+        const r = 1.3 * this.sprite.height + alpha;
         this.p5.fill(0, 0, 255, alpha);
         this.p5.arc(0, 0, r, r, 0, this.p5.TWO_PI);
       }

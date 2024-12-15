@@ -55,8 +55,12 @@ export default class Game {
 
     p5.preload = () => {
       // all async operations should be done here
+      let jsonFile = "game.small.json";
+      if (p5.windowWidth > 1400) jsonFile = "game.large.json";
+      if (p5.windowWidth > 768) jsonFile = "game.medium.json";
+
       this.p5.loadJSON(
-        "game.json",
+        jsonFile,
         (settings: ISettings) => {
           this.settings = settings;
 
@@ -76,7 +80,7 @@ export default class Game {
           this.MineFactory = new MineFactory(this);
           this.MineFactory.preload();
 
-          console.info("Starting Game", this.settings.name, "powered by p5.js");
+          console.info(`Starting Game ${this.settings.name} powered by p5.js`);
         },
         (error) => {
           console.error("Failed to load game settings", error);
@@ -96,6 +100,7 @@ export default class Game {
 
       // Set the initial mines count. It will be updated when the player hits a mine.
       this.minesCount = this.MineFactory.mines.length;
+      console.log("Mines count:", this.minesCount);
     };
 
     p5.draw = () => {
@@ -162,7 +167,8 @@ export default class Game {
       this.stage.drawStatus();
 
       // If there are no more mines, level up
-      if (this.minesCount === 0) {
+      if (this.minesCount > 0) console.log("Mines count:", this.minesCount);
+      else {
         this.gameAchievement();
         return;
       }
